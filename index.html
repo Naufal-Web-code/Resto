@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="WEB RESTO NAUFAL - Jasa Pembuatan Menu Digital QR Modern untuk Resto & Warung.">
+<title>WEB RESTO NAUFAL — Jasa Menu Digital QR</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   RESET & VARIABLES
+   ========================================================================== */
+:root {
+  --primary: #10b981;
+  --primary-hover: #059669;
+  --primary-light: #ecfdf5;
+  --primary-glow: rgba(16, 185, 129, 0.25);
+  
+  --dark-bg: #0b0f17;
+  --dark-card: #111827;
+  --dark-border: #1f2937;
+  
+  --bg-main: #fafbfc;
+  --surface: #ffffff;
+  
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05);
+  --shadow-lg: 0 20px 30px -10px rgba(0,0,0,0.08);
+  --shadow-glow: 0 12px 30px var(--primary-glow);
+  
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1140px,90%);margin:auto}
+
+/* Navigation System Page Switching */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ==========================================================================
+   HEADER & NAVBAR
+   ========================================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  transition: var(--transition);
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.logo-badge {
+  background: var(--primary);
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+}
+
+nav {
+  display: flex;
+  gap: 24px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+nav a {
+  transition: var(--transition);
+  cursor: pointer;
+}
+nav a:hover, nav a.nav-active {
+  color: var(--primary);
+}
+
+.nav-cta {
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: var(--shadow-glow);
+  transition: var(--transition);
+}
+.nav-cta:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   BUTTONS & BADGES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-md);
+  padding: 14px 26px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: var(--transition);
+  gap: 8px;
+}
+.btn:hover { transform: translateY(-3px); }
+.btn.primary { background: var(--primary); color: #fff; box-shadow: var(--shadow-glow); }
+.btn.primary:hover { background: var(--primary-hover); }
+.btn.dark { background: var(--dark-bg); color: #fff; }
+.btn.dark:hover { background: #1e293b; }
+.btn.full { width: 100%; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+h1 { font-size: clamp(38px, 5.5vw, 58px); line-height: 1.08; letter-spacing: -1.5px; font-weight: 800; }
+h2 { font-size: clamp(28px, 3.5vw, 40px); line-height: 1.15; letter-spacing: -1px; font-weight: 800; }
+
+/* ==========================================================================
+   HALAMAN 1: LANDING PAGE JASA
+   ========================================================================== */
+.hero {
+  padding: 80px 0 100px;
+  background: radial-gradient(circle at 80% 10%, rgba(16, 185, 129, 0.08) 0%, rgba(255,255,255,0) 60%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-text {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin: 22px 0 32px;
+  max-width: 580px;
+}
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.mockup-wrap {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  border: 1px solid var(--border);
+  border-radius: 36px;
+  padding: 35px 25px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+.phone {
+  width: 260px;
+  margin: auto;
+  background: #090d16;
+  padding: 12px;
+  border-radius: 36px;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.35);
+  border: 4px solid #1f2937;
+}
+.phone-notch {
+  width: 90px; height: 18px; background: #090d16;
+  margin: 0 auto 8px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+}
+.screen { background: #fff; border-radius: 24px; padding: 16px 14px; text-align: left; }
+.screen-header { border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 10px; text-align: center; }
+.screen-title { font-size: 15px; font-weight: 800; }
+.menu-item-preview {
+  background: #f8fafc; border: 1px solid #f1f5f9; border-radius: var(--radius-sm);
+  padding: 8px 10px; margin: 6px 0; font-size: 12px; display: flex; justify-content: space-between; font-weight: 600;
+}
+.qr-preview {
+  margin-top: 14px; background: var(--primary-light); border: 1.5px dashed var(--primary);
+  border-radius: var(--radius-md); padding: 12px; text-align: center;
+}
+.qr-preview img {
+  width: 110px; height: 110px; display: block; margin: 0 auto 8px; border-radius: 8px; background: #fff; padding: 6px;
+}
+
+.section { padding: 90px 0; }
+.section-head { text-align: center; max-width: 680px; margin: 0 auto 50px; }
+.section-head p { color: var(--text-muted); margin-top: 12px; }
+
+.benefit-grid, .pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px 28px; transition: var(--transition);
+}
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.icon-box {
+  width: 56px; height: 56px; border-radius: var(--radius-md);
+  background: var(--primary-light); display: flex; align-items: center;
+  justify-content: center; font-size: 26px; margin-bottom: 20px;
+}
+
+.price-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 36px 30px; position: relative;
+  display: flex; flex-direction: column; transition: var(--transition);
+}
+.price-card.popular { border: 2px solid var(--primary); box-shadow: var(--shadow-lg); }
+.badge {
+  position: absolute; top: -14px; right: 24px; background: var(--primary);
+  color: #fff; border-radius: var(--radius-full); padding: 5px 14px; font-size: 11px; font-weight: 800;
+}
+.price { font-size: 34px; font-weight: 800; margin: 16px 0 6px; }
+.features { list-style: none; margin: 24px 0 32px; flex-grow: 1; }
+.features li { padding: 8px 0; font-size: 14.5px; display: flex; gap: 10px; }
+.features li span { color: var(--primary); font-weight: 800; }
+
+/* ==========================================================================
+   HALAMAN 2: DEMO TAMPILAN MENU RESTORAN
+   ========================================================================== */
+.demo-header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0 20px;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 40px 0 80px;
+}
+.menu-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menu-title { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+.menu-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+.menu-price { font-size: 16px; font-weight: 800; color: var(--primary-hover); }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  background: #fff; border-top: 1px solid var(--border); padding: 30px 0;
+  color: var(--text-muted); font-size: 13.5px;
+}
+.footer-inner { display: flex; justify-content: space-between; align-items: center; }
+.live-time { margin-top: 4px; font-size: 12px; color: var(--primary); font-weight: 600; }
+
+@media(max-width:960px){
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-buttons { justify-content: center; }
+  .benefit-grid, .pricing-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:640px){
+  nav { display: none; }
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER & NAVBAR -->
+<header class="header">
+  <div class="container nav">
+    <div class="logo" onclick="switchPage('jasa')">
+      WEB RESTO <span class="logo-badge">NAUFAL</span>
+    </div>
+    <nav>
+      <a onclick="switchPage('jasa')" id="nav-jasa" class="nav-active">Jasa Pembuatan</a>
+      <a onclick="switchPage('demo')" id="nav-demo">Lihat Demo Menu Resto</a>
+      <a onclick="switchPage('jasa'); scrollToSec('#harga')">Harga Paket</a>
+    </nav>
+    <a class="nav-cta" id="navWA" href="#" target="_blank" rel="noopener">Konsultasi Pembuatan</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- =================================================================== -->
+  <!-- HALAMAN 1: JASA PEMBUATAN WEB (PROMOSI & HARGA PAKET)               -->
+  <!-- =================================================================== -->
+  <div id="page-jasa" class="page active">
+    
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">✨ Jasa Pembuatan Menu Digital QR</span>
+          <h1>Bikin Warung & Resto Kamu Lebih Modern</h1>
+          <p class="hero-text">
+            Solusi pembuatan sistem menu digital interaktif untuk pemilik usaha kuliner. 
+            <strong>Tanpa biaya cetak ulang, pesanan pelanggan langsung terhubung ke WhatsApp kasir.</strong>
+          </p>
+          <div class="hero-buttons">
+            <button class="btn primary" id="heroWA" href="#" target="_blank">Pesan Jasa Pembuatan</button>
+            <button class="btn dark" onclick="switchPage('demo')">📱 Lihat Demo Menu Resto</button>
+          </div>
+        </div>
+
+        <div class="mockup-wrap">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="screen">
+              <div class="screen-header">
+                <div class="screen-title">🍜 WARUNG NAUFAL</div>
+                <div style="font-size:10px; color:var(--text-muted)">Contoh Menu Hasil Pembuatan</div>
+              </div>
+              <div class="menu-item-preview">
+                <span>🍜 Mie Ayam Special</span>
+                <span style="color:var(--primary); font-weight:700;">12k</span>
+              </div>
+              <div class="menu-item-preview">
+                <span>🍚 Nasi Goreng Spesial</span>
+                <span style="color:var(--primary); font-weight:700;">15k</span>
+              </div>
+              <div class="menu-item-preview">
+                <span>🥤 Es Teh Manis</span>
+                <span style="color:var(--primary); font-weight:700;">5k</span>
+              </div>
+              <div class="qr-preview">
+                <img src="qr-menu-tomzstore.png" alt="QR Menu TOMZSTORE">
+                <strong style="font-size: 11px; color: var(--primary-hover);">Stiker QR di Meja Resto</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Keuntungan Menggunakan Jasa Kami</span>
+          <h2>Mengapa Pilih WEB RESTO NAUFAL?</h2>
+          <p>Membantu pemilik UMKM dan resto tampil lebih profesional dengan sistem modern.</p>
+        </div>
+
+        <div class="benefit-grid">
+          <div class="card">
+            <div class="icon-box">💰</div>
+            <h3>Hemat Biaya Operasional</h3>
+            <p>Tidak perlu sering cetak ulang buku menu saat ada perubahan harga atau daftar menu.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">⚡</div>
+            <h3>Proses Pengerjaan Cepat</h3>
+            <p>Website menu digital QR kamu bisa langsung aktif dan siap digunakan dalam waktu singkat.</p>
+          </div>
+          <div class="card">
+            <div class="icon-box">📱</div>
+            <h3>Tampilan Responsif</h3>
+            <p>Tampilan menu otomatis menyesuaikan semua jenis smartphone pelanggan dengan nyaman.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="harga" style="background: #f8fafc;">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Pilihan Paket Jasa</span>
+          <h2>Harga Paket Pembuatan Website</h2>
+          <p>Pilih paket pembuatan sesuai dengan skala dan kebutuhan usaha kamu.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="price-card">
+            <h3>Basic</h3>
+            <div class="price">Rp250.000</div>
+            <p>Cocok untuk warung makan sederhana.</p>
+            <ul class="features">
+              <li><span>✓</span> Website Menu Digital</li>
+              <li><span>✓</span> QR Code Siap Cetak</li>
+              <li><span>✓</span> Button Order WhatsApp</li>
+            </ul>
+            <a href="#" class="btn dark full package" data-package="Paket Basic - Rp250.000">Pesan Paket Basic</a>
+          </div>
+
+          <div class="price-card popular">
+            <span class="badge">PALING POPULER</span>
+            <h3>Standard</h3>
+            <div class="price">Rp500.000</div>
+            <p>Solusi ideal untuk resto & cafe modern.</p>
+            <ul class="features">
+              <li><span>✓</span> Semua Fitur Paket Basic</li>
+              <li><span>✓</span> Tampilan UX/UI Elegan</li>
+              <li><span>✓</span> Kategori Menu Terstruktur</li>
+              <li><span>✓</span> Integrasi WA Kasir</li>
+            </ul>
+            <a href="#" class="btn primary full package" data-package="Paket Standard - Rp500.000">Pesan Paket Standard</a>
+          </div>
+
+          <div class="price-card">
+            <h3>Premium</h3>
+            <div class="price">Rp750.000</div>
+            <p>Paket lengkap dengan custom desain resto.</p>
+            <ul class="features">
+              <li><span>✓</span> Semua Fitur Standard</li>
+              <li><span>✓</span> Custom Branding & Warna</li>
+              <li><span>✓</span> Maintenance Pemeliharaan</li>
+            </ul>
+            <a href="#" class="btn dark full package" data-package="Paket Premium - Rp750.000">Pesan Paket Premium</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =================================================================== -->
+  <!-- HALAMAN 2: DEMO CONTOH HASIL MENU DIGITAL (UNTUK PELANGGAN RESTO)   -->
+  <!-- =================================================================== -->
+  <div id="page-demo" class="page">
+    <div class="demo-header">
+      <div class="container">
+        <span class="eyebrow">Halaman Demo Resto</span>
+        <h2>Contoh Tampilan Menu Digital Pelanggan</h2>
+        <p style="color: var(--text-muted); font-size: 15px;">
+          Ini adalah simulasi tampilan yang akan dilihat oleh pembeli saat melakukan scan QR Code di meja makan.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="menu-grid">
+        
+        <div class="menu-card">
+          <div>
+            <div class="menu-title">🍜 Mie Ayam Special</div>
+            <div class="menu-desc">Mie kenyal dengan topping ayam cincang gurih dan sawi segar.</div>
+          </div>
+          <div class="menu-price">Rp12.000</div>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="menu-title">🍚 Nasi Goreng Spesial</div>
+            <div class="menu-desc">Nasi goreng bumbu rempah dengan telur mata sapi dan sosis.</div>
+          </div>
+          <div class="menu-price">Rp15.000</div>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="menu-title">🥤 Es Teh Manis</div>
+            <div class="menu-desc">Teh tubruk pilihan disajikan dingin dan menyegarkan.</div>
+          </div>
+          <div class="menu-price">Rp5.000</div>
+        </div>
+
+        <div class="menu-card">
+          <div>
+            <div class="menu-title">🍟 Kentang Goreng</div>
+            <div class="menu-desc">Kentang renyah gurih cocok untuk teman bersantai.</div>
+          </div>
+          <div class="menu-price">Rp10.000</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div>
+      <p>© <span id="year"></span> <strong>WEB RESTO NAUFAL</strong>. All rights reserved.</p>
+      <p class="live-time" id="liveDateTime">Memuat waktu...</p>
+    </div>
+    <a onclick="window.scrollTo({top: 0, behavior: 'smooth'});" style="font-weight: 600; cursor: pointer;">Kembali ke atas ↑</a>
+  </div>
+</footer>
+
+<script>
+const STORE = {
+  whatsapp: "62895343287264",
+  name: "WEB RESTO NAUFAL"
+};
+
+function whatsappURL(message) {
+  return "https://wa.me/" + STORE.whatsapp + "?text=" + encodeURIComponent(message);
+}
+
+// Navigasi Pindah Halaman
+function switchPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(nav => nav.classList.remove('nav-active'));
+  
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.getElementById('nav-' + pageId).classList.add('nav-active');
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function scrollToSec(selector) {
+  setTimeout(() => {
+    document.querySelector(selector).scrollIntoView({ behavior: 'smooth' });
+  }, 100);
+}
+
+// Link WhatsApp
+const defaultMessage = "Halo NAUFAL, saya ingin konsultasi mengenai Jasa Pembuatan Website Menu Digital QR.";
+document.getElementById("navWA").href = whatsappURL(defaultMessage);
+document.getElementById("heroWA").onclick = function() { window.open(whatsappURL(defaultMessage), "_blank"); };
+
+document.querySelectorAll(".package").forEach(function(button) {
+  button.addEventListener("click", function(event) {
+    event.preventDefault();
+    const paket = button.getAttribute("data-package");
+    const message = "Halo NAUFAL, saya tertarik memesan " + paket + ". Mohon informasi alur pengerjaannya.";
+    window.open(whatsappURL(message), "_blank");
+  });
+});
+
+// Waktu Realtime
+function updateDateTime() {
+  const now = new Date();
+  const dateText = new Intl.DateTimeFormat("id-ID", {
+    timeZone: "Asia/Jakarta", weekday: "long", day: "numeric", month: "long", year: "numeric"
+  }).format(now);
+
+  const timeText = new Intl.DateTimeFormat("id-ID", {
+    timeZone: "Asia/Jakarta", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
+  }).format(now);
+
+  document.getElementById("year").textContent = now.getFullYear();
+  document.getElementById("liveDateTime").textContent = dateText + " • " + timeText + " WIB";
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
+</script>
+
+</body>
+</html>
